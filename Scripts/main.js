@@ -1,19 +1,13 @@
 $(document).ready(function(){
-    $('#myDiv').draggable({
-        snap: ".stickClass",
-        snapMode: "inner",
-        revert: true
+    gameEngine.loadBoard();
+    $('.whiteItem').draggable('disable');
+    $('.blackItem').draggable('disable');
+    $('#startGame').click(function(){
+        gameEngine.setGameState(gameEngine.gameState.White);
+        console.log('State: ' + gameEngine.getGameState());
+        $('.whiteItem').draggable('enable');
+    })
 
-    });
-    $('td').droppable({
-        accept: "#myDiv",
-        activeClass: "ui-state-hover",
-        hoverClass: "ui-state-active",
-        drop: function(ev, ui) {
-            var dropped = ui.draggable;
-            var droppedOn = $(this);
-            $(dropped).detach().css({top: 0,left: 0}).appendTo(droppedOn);
-        }
 
-    });
+
 });
