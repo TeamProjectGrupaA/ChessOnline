@@ -14,17 +14,17 @@
     border-spacing: 0px;
 }
 .black{
-    background: black;
+    background: #3C1F11;
 }
 .white{
-    background: white;
+    background: #B35E34;
 }
 body{
     margin-left: 350px;
 }
 .whiteItem{
-    background: #fff242;
+    background: white;
 }
 .blackItem{
-    background: #ff3135;
+    background: black;
 }
