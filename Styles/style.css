@@ -12,6 +12,8 @@
 .myTable{
     border: 2px solid #363636;
     border-spacing: 0px;
+    margin-top: 50px;
+    margin-left: 20%;
 }
 .black{
     background: #3C1F11;
@@ -19,7 +21,7 @@
 .white{
     background: #B35E34;
 }
-body{
+#LoginBody{
     position: relative;
     background: url("loginBackground.jpg") no-repeat 100% 45%;
 }
@@ -31,4 +33,15 @@ body{
 }
 #content{
     z-index: 2;
+}
+#whoLogin > a{
+    color: #9D9D9D;
+    background-color: transparent;
+}
+#whoLogin{
+    margin-top: 15px;
+    margin-right: 15px;
+}
+.availableFields{
+    background: rgba(125, 238, 84, 1);
 }

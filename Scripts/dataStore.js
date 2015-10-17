@@ -8,20 +8,17 @@ dataStore = function(){
     var king = {};
     var queen = {};*/
     // private property
-    var elements = [];
+    var boardElements = [];
     // private method
 
     //public
     return{
-        initBoardTable: function(){
-            console.log('init table');
-            elements = $(".stickClass");
+        getBoardElement: function(index){
+            return boardElements[index];
         },
-        tableCount: function(){
-            console.log(elements.length);
-        },
-        getTableElement: function(index){
-            return elements[index];
+        addBoardElement: function(element){
+            boardElements.push(element);
         }
+
     }
 }();
