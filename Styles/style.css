@@ -20,11 +20,15 @@
     background: #B35E34;
 }
 body{
-    margin-left: 350px;
+    position: relative;
+    background: url("loginBackground.jpg") no-repeat 100% 45%;
 }
 .whiteItem{
     background: white;
 }
 .blackItem{
     background: black;
+}
+#content{
+    z-index: 2;
 }
