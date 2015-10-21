@@ -66,10 +66,17 @@ gameEngine = function () {
                 $('#boardTable').append(row);
             }
         },
+        changePosition: function(){
+          alert('Klik :d')
+        },
         addWhiteItems: function (element) {
             for (var j = 0; j < 8; j++) {
-                var item = document.createElement('div');
-                item.className = "myDiv whiteItem";
+                var item = document.createElement('img');
+                item.src = "./bierki/pionek_bialy.png";
+                item.className = "myDiv";
+                $(item).mousedown(function(){
+
+                });
                 $(item).draggable({
                     snap: ".stickClass",
                     snapMode: "inner",

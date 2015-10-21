@@ -8,15 +8,20 @@
     <script src="Scripts/jquery.js"></script>
     <script src="Scripts/jquery-ui.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/chessboard-0.3.0.min.js"></script>
     <script src="Scripts/main.js"></script>
+    <script src="Scripts/Chess.js"></script>
+    <script src="Scripts/ch.js"></script>
     <script src="Scripts/gameEngine.js"></script>
     <script src="Scripts/dataStore.js"></script>
     <link rel="stylesheet" href="Styles/jquery-ui.min.css">
     <link rel="stylesheet" href="Styles/bootstrap.min.css">
     <link rel="stylesheet" href="Styles/style.css">
+    <link rel="stylesheet" href="Styles/chessboard-0.3.0.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="Scripts/angular.min.js"></script>
 </head>
-<body>
+<body ng-controller="leftPanelController">
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -30,15 +35,64 @@
                 <li><a href="#"><i class="fa fa-cog"></i> Ustawienia</a></li>
             </ul>
         </div>
-        <div style="float: right" id="whoLogin"><a href="#">Zalogowany jako:</a></div>
+        <div style="float: right" class="btn-danger logOutButton"><i class="fa fa-sign-out"></i></div>
+        <div style="float: right" id="whoLogin"><a href="#">{{actualUser.firstName}} {{actualUser.lastName}}</a></div>
     </div>
 </nav>
-<div class="container-fluid">
-    <div class="col-lg-2"></div>
-    <div class="col-lg-8">
-        <table id="boardTable" class="myTable"></table>
+<div class="container-fluid column main">
+
+    <div class="col-lg-3 column" id="leftPanel">
+        <div class="col-lg-12 sortPersonList">
+            <div class="col-lg-6"><label>Wyszukaj<input class="form-control" ng-model="searchName"></label></div>
+            <div class="col-lg-6">
+                <label>Sortuj
+                    <select class="form-control" ng-model="sorting">
+                        <option value="lastName">A-Z</option>
+                        <option value="-lastName">Z-A</option>
+                        <option value="ranking">Ranking</option>
+                    </select>
+                </label>
+            </div>
+        </div>
+        <ul class="list-group personList" >
+            <li class="list-group-item personListItem" ng-repeat="user in Users | orderBy:sorting | filter: searchName"><span class="badge">{{user.ranking}}</span> {{user.firstName}} {{user.lastName}}</li>
+        </ul>
     </div>
-    <div class="col-lg-2"></div>
+    <div class="col-lg-9 column" id="mainContent">
+        <div class="col-lg-12" style="margin-left: 9%;overflow-y: auto;">
+            <div class="btn btn-block btn-success gameButton col-lg-6"><label>Nowa gra</label></div>
+            <div class="btn btn-block btn-success gameButton col-lg-6 disabled"><label>Wczytaj gre</label></div>
+            <div id="board" class="col-lg-5" style="width: 50%;margin-left: 10%; margin-top: 1.8%;">
+                <table id="boardTable" class="myTable">
++
+                </table>
+            </div>
+        </div>
+        <div class="col-lg-12 column" style="margin-top:36px;">
+            <span><label style="margin-left: 2.2%;">MOJE PARTIE</label><label style="float: right;margin-right: 15px;"><i class="fa fa-angle-down fa-lg"></i></label></span>
+            <div class="col-lg-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Przeciwnik</th>
+                            <th>Ruch</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--<div id="board" style="width: 60%;margin-left: 20%;"></div>-->
+    </div>
+
+
 </div>
 </body>
 </html>
