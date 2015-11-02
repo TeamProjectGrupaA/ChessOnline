@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <script src="Scripts/jquery.js"></script>
+    <script src="Scripts/jquery-ui.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="Styles/jquery-ui.min.css">
+    <link rel="stylesheet" href="Styles/bootstrap.min.css">
+    <link rel="stylesheet" href="Styles/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/angular-route.min.js"></script>
+    <script src="Scripts/angular-resource.min.js"></script>
+    <script src="Scripts/main.js"></script>
+    <script src="Scripts/services/globalContex.js"></script>
+</head>
+<body >
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">ChessOnline</a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav">
+                <li><a href="main.html#/"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="#Profile"><i class="fa fa-user"></i> Profil</a></li>
+                <li><a href="#"><i class="fa fa-list"></i> Ranking</a></li>
+                <li><a href="#"><i class="fa fa-cog"></i> Ustawienia</a></li>
+            </ul>
+        </div>
+        <div style="float: right" class="btn-danger logOutButton"><i class="fa fa-sign-out"></i></div>
+        <div style="float: right" id="whoLogin"><a href="#">{{actualUser.firstName}} {{actualUser.lastName}}</a></div>
+    </div>
+</nav>
+<div class="container-fluid column main" ng-view>
+
+</div>
+</body>
+</html>
