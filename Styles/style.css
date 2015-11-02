@@ -1,6 +1,6 @@
-/*body{
+body{
     overflow: hidden;
-}*/
+}
 .myTable td{
     height: 60px;
     width: 60px;
@@ -28,7 +28,6 @@
     position: relative;
     background-color: #A7A8AA;
 }
-
 #LoginBody .navbar-logo {
     height: 50px;
     margin: 0;
@@ -41,7 +40,7 @@
 
 #LoginBody .registration-form {
     background: #fff;
-    padding: 30px;   
+    padding: 30px;
 }
 
 #LoginBody .registration-image-conatiner {
@@ -51,16 +50,6 @@
     display: none;
     border: 1px solid #000;
 }
-
-/*#LoginBody .registration-image {
-    background: url('../img/fancy-image.jpg');
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background-size: 100%;
-    background-repeat: no-repeat
-}*/
-
 .whiteItem{
     background: white;
 }
@@ -82,23 +71,29 @@
     background: rgba(125, 238, 84, 1);
 }
 .personList{
+    min-height: 450px;
+    max-height: 450px;
     width: 100%;
     overflow-y: scroll;
-    max-height: 450px;
-    margin-bottom: 1px;
+    padding: 0px;
+    margin-top: 5px;
 }
 .personListItem{
-    padding: 20px;
+    padding: 15px;
     margin-bottom: -1px;
+    cursor: pointer;
 }
 .column{
     padding-left: 0px;
     padding-right: 0px;
 }
 .sortPersonList{
-    margin-bottom: 20px;
     padding-left: 0px;
     padding-right: 0px;
+}
+.personListItem:hover{
+    /*background: rgba(169, 179, 167, 0.58);*/
+    background: #DDD;
 }
 .navbar {
     border-radius: 0px;
@@ -116,7 +111,16 @@
 .btn-block + .btn-block {
     margin-top: 0px;
 }
-
+.profilFoto{
+    height: 180px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    background: #080808;
+}
+.hideSection{
+    float: right;
+    cursor: pointer;
+}
 @media (min-width: 768px) {
     #LoginBody .registration-form {
         margin-right: 15px;
