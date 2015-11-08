@@ -33,23 +33,14 @@ body{
     margin: 0;
 }
 
-#LoginBody .registration-form, #LoginBody .registration-image-conatiner {
-    height: 400px;
-    border-radius: 9px;
-}
-
-#LoginBody .registration-form {
-    background: #fff;
+#LoginBody .login-form {
     padding: 30px;
 }
 
-#LoginBody .registration-image-conatiner {
-    background: #A7A8AA;
-    padding: 20px;
-    text-align: center;
-    display: none;
-    border: 1px solid #000;
+#LoginBody .login-form label {
+  font-size: 18px;
 }
+
 .whiteItem{
     background: white;
 }
@@ -120,14 +111,4 @@ body{
 .hideSection{
     float: right;
     cursor: pointer;
-}
-@media (min-width: 768px) {
-    #LoginBody .registration-form {
-        margin-right: 15px;
-    }
-
-    #LoginBody .registration-image-conatiner {
-        margin-left: 15px;
-        display: block;
-    }
 }

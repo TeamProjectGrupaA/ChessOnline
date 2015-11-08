@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="Styles/bootstrap.min.css">
     <link rel="stylesheet" href="Styles/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="icon" href="favicon.png">
 
 </head>
 <body id="LoginBody">
@@ -20,44 +21,24 @@
             <div class="navbar-header">
                 <img alt="Brand" src="./img/logoChess1.png" class="navbar-logo">
             </div>
-
-            <form class="navbar-form navbar-right" role="login">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Login">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Password">
-                </div>
-                <button type="submit" id="login-submit" class="btn btn-default">Zaloguj</button>
-            </form>
         </div>
     </nav>
 
     <div class="conatiner-fluid" id="content">
-        <div class="col-sm-6 col-sm-push-5 col-sm-offset-1 col-xs-12">
-            <div class="registration-form">
-                <form>
-                    <div class="form-group">
-                        <label for="login">Login</label>
-                        <input type="text" class="form-control" id="login" placeholder="Login">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">E-mail</label>
-                        <input type="email" class="form-control" id="email" placeholder="Email">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Password">
-                    </div>
-                    <button type="submit" class="btn btn-default" id="register-submit">Zarejestruj</button>
-                </form>
-            </div>
+        <div class="col-sm-4 col-sm-offset-4 col-xs-12">
+          <form class="login-form">
+            <label for="inputLogin">Login</label>
+            <input type="email" id="inputLogin" class="form-control" placeholder="Login" required="" autofocus="">
+            <br />
+            <label for="inputPassword">Password</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+            <br />
+            <button type="submit" class="btn btn-primary btn-block" id="login-submit">Zaloguj</button>
+            <br />
+            <button type="submit" class="btn btn-primary btn-block" id="register-submit">Zarejestruj</button>
+          </form>
+          
         </div>
-        <div class="col-sm-5 col-sm-pull-7 col-xs-12">
-            <div class="registration-image-conatiner">
-                <div class="registration-image"></div>
-            </div>
-        </div>        
     </div>
 
     <script>
