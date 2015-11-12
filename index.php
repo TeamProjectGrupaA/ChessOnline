@@ -1,3 +1,48 @@
+<?php
+session_start();
+
+include 'functions.php';
+
+if(isset($_POST['log']['submit'])){
+	if(login(	
+					$_POST['log']['login'], 
+					$_POST['log']['password']
+				)){
+		$_SESSION['logged']['login'] = $_POST['log']['login'];
+		echo '<font style="color: red;">Zalogowano</font><br />';
+	}else{
+		echo '<font style="color: red;">Wystąpił błąd</font><br />';
+	}
+}
+
+if(isset($_POST['unlog'])){
+	session_unset();
+}
+
+//sprawdzam czy juz zalogowano
+if(isset($_SESSION['logged'])){
+	echo 'Witaj '.$_SESSION['logged']['login']."<br />\r\n";
+	echo '
+			<form method="POST">
+				<input type="submit" name="unlog" value="Wyloguj" />
+			</form>';
+}
+
+if(isset($_POST['reg']['submit'])){
+	if(register(	
+					$_POST['reg']['login'], 
+					$_POST['reg']['email'],
+					$_POST['reg']['password']
+				))
+		echo '<font style="color: red;">Zarejestrowano</font>';
+	else
+		echo '<font style="color: red;">Wystąpił błąd</font>';
+		
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,14 +66,14 @@
                 <img alt="Brand" src="./img/logoChess1.png" class="navbar-logo">
             </div>
 
-            <form class="navbar-form navbar-right" role="login">
+            <form class="navbar-form navbar-right" role="login" method="POST">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Login">
+                    <input type="text" class="form-control" name="log[login]" placeholder="Login">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Password">
+                    <input type="text" class="form-control" name="log[password]" placeholder="Password">
                 </div>
-                <button type="submit" id="login-submit" class="btn btn-default">Zaloguj</button>
+                <button type="submit" id="login-submit" name="log[submit]" class="btn btn-default">Zaloguj</button>
             </form>
         </div>
     </nav>
@@ -36,20 +81,20 @@
     <div class="conatiner-fluid" id="content">
         <div class="col-sm-6 col-sm-push-5 col-sm-offset-1 col-xs-12">
             <div class="registration-form">
-                <form>
+                <form method="POST">
                     <div class="form-group">
                         <label for="login">Login</label>
-                        <input type="text" class="form-control" id="login" placeholder="Login">
+                        <input type="text" class="form-control" id="login" name="reg[login]" placeholder="Login">
                     </div>
                     <div class="form-group">
                         <label for="email">E-mail</label>
-                        <input type="email" class="form-control" id="email" placeholder="Email">
+                        <input type="email" class="form-control" id="email" name="reg[email]" placeholder="Email">
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Password">
+                        <input type="password" class="form-control" id="password" name="reg[password]" placeholder="Password">
                     </div>
-                    <button type="submit" class="btn btn-default" id="register-submit">Zarejestruj</button>
+                    <button type="submit" class="btn btn-default" id="register-submit" name="reg[submit]">Zarejestruj</button>
                 </form>
             </div>
         </div>
@@ -61,7 +106,7 @@
     </div>
 
     <script>
-        var loginButton = document.getElementById('login-submit');
+        /*var loginButton = document.getElementById('login-submit');
         var registerButton = document.getElementById('register-submit');
 
         loginButton.addEventListener('click', function(e) {
@@ -72,7 +117,7 @@
         registerButton.addEventListener('click', function(e) {
             e.preventDefault();
             window.location.href='main.html';
-        });
+        });*/
     </script>
 </body>
 </html>
