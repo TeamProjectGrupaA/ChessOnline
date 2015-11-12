@@ -2,36 +2,56 @@
     <div class="profilFoto"></div>
     <ul class="list-group">
         <li class="list-group-item">Ranking</li>
-        <li class="list-group-item">Wygrane </li>
-        <li class="list-group-item">Przegrane </li>
+        <li class="list-group-item">Wygrane</li>
+        <li class="list-group-item">Przegrane</li>
         <li class="list-group-item">Remisy</li>
     </ul>
 </div>
 <div class="col-lg-10">
-    <div class="panel panel-default">
-        <div class="panel-heading"><h4>MOJE PARTIE <i class="fa fa-angle-down hideSection" ng-click="changeView($event,'myGames')"></i></h4></div>
-        <div class="panel-body" id="myGames">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Data</th>
-                    <th>Przeciwnik</th>
-                    <th>Ruch</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>MOJE PARTIE</th>
+            <th><i class="fa fa-angle-up hideSection" ng-click="changeView($event,'myGames')"></i></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        </tr>
+        </tbody>
+    </table>
+    <div id="myGames">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Data</th>
+                <th>Przeciwnik</th>
+                <th>Ruch</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
-    <div class="panel panel-success">
-        <div class="panel-heading"><h4>ZAPROSZENIA <i class="fa fa-angle-down hideSection" ng-click="changeView($event,'myInvitations')"></i></h4></div>
-        <div class="panel-body" id="myInvitations">
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ZAPROSZENIA</th>
+                <th><i class="fa fa-angle-up hideSection" ng-click="changeView($event,'myInvitations')"></i></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            </tr>
+            </tbody>
+        </table>
+        <div id="myInvitations">
             <table class="table">
                 <thead>
                 <tr>

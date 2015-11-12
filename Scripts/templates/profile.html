@@ -1,0 +1,57 @@
+<div class="col-lg-2">
+    <div class="profilFoto"></div>
+    <ul class="list-group">
+        <li class="list-group-item">Ranking: <span class="badge pull-right">{{actualUser.ranking}}</span></li>
+        <li class="list-group-item">Wygrane: <span class="badge pull-right">{{actualUser.wins}}</span></li>
+        <li class="list-group-item">Przegrane: <span class="badge pull-right">{{actualUser.losts}}</span></li>
+        <li class="list-group-item">Remisy: <span class="badge pull-right">{{actualUser.tie}}</span></li>
+    </ul>
+</div>
+<div class="col-lg-10">
+    <div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>INFORMACJE</th>
+            <th><i class="fa fa-angle-up hideSection" ng-click="changeView($event,'personalData')"></i></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        </tr>
+        </tbody>
+    </table>
+        <div id="personalData">
+            <table class="pull-left personalDataTable" style="width: 15%;margin-bottom: 40px;">
+                <tbody>
+                <tr>
+                    <td>Imie:</td>
+                    <td>{{actualUser.firstName}}</td>
+                </tr>
+                <tr>
+                    <td>Nazwisko:</td>
+                    <td>{{actualUser.lastName}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ZAPROSZENIE</th>
+                <th><i class="fa fa-angle-up hideSection" ng-click="changeView($event,'inviteUser')"></i></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            </tr>
+            </tbody>
+        </table>
+        <div id="inviteUser">
+            <div class="btn btn-default" style="width: 10%"><i class="fa fa-play"></i> Zaproś</div>
+        </div>
+    </div>
+
+</div>

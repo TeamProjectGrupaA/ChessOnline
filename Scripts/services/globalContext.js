@@ -1,6 +1,6 @@
-var globalContex = globalContex || {};
+var globalContext = globalContext || {};
 
-globalContex.context = function(){
+globalContext.context = function(){
   return{
       toggleArrow: function(element){
           if($(element).hasClass('fa-angle-down')){

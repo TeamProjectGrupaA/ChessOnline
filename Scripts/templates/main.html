@@ -4,7 +4,7 @@
         <div class="col-lg-12">
             <label>Sortuj</label>
             <select class="form-control" ng-model="sorting">
-                <option value="firstName">A-Z</option>
+                <option value="firstName" selected="selected">A-Z</option>
                 <option value="-firstName">Z-A</option>
                 <option value="ranking">Ranking</option>
             </select>
@@ -13,7 +13,7 @@
     <div>
     <div class="col-lg-12 personList">
     <ul class="list-group" >
-        <li class="list-group-item personListItem" ng-repeat="user in Users | filter: searchName | orderBy: sorting">{{user.firstName}} <span class="badge" style="align-items: flex-end">{{user.ranking}}</span></li>
+        <li class="list-group-item personListItem" ng-repeat="user in Users | filter: searchName | orderBy: sorting" ng-click="openUserProfile(user)">{{user.firstName}} <span class="badge" style="align-items: flex-end">{{user.ranking}}</span></li>
     </ul>
     </div>
     </div>
