@@ -17,7 +17,7 @@ $(document).ready(function () {
                 controller: "rankingController"
             })
             .when('/Settings',{
-                templateUrl: "Scripts/templates,settings.html",
+                templateUrl: "Scripts/templates/settings.html",
                 controller: "settingsController"
             })
 
@@ -34,8 +34,8 @@ $(document).ready(function () {
             {"firstName": "David", "lastName": "Smith", "ranking": 9},
             {"firstName": "Hans", "lastName": "Klos", "ranking": 12},
             {"firstName": "Anna", "lastName": "Kurnikova", "ranking": 13},
-            {"firstName": "Peter", "lastName": "Czereœniak", "ranking": 10},
-            {"firstName": "Pan", "lastName": "Ktoœ", "ranking": 11}
+            {"firstName": "Peter", "lastName": "Czereï¿½niak", "ranking": 10},
+            {"firstName": "Pan", "lastName": "Ktoï¿½", "ranking": 11}
         ];
         $scope.openUserProfile = function(user){
             window.location.replace("#Profile/" + user.firstName);
