@@ -22,6 +22,57 @@ $(document).ready(function () {
             })
 
     });
+    app.factory('userService', function() {
+        var user = {
+            firstName: "Ala",
+            lastName: "Kot",
+            email: "ala@op.pl",
+            password: "kot",
+            avatar: "hetman_bialy.png" 
+        }
+        var saveUser = function() {
+            console.log(user);
+        }
+        
+        var deleteUser = function() {
+            user.firstName = "";
+            user.lastName = "";
+            user.email = "";
+            user.password = "";
+            user.avatar = "";
+        }
+        return {
+            user: user,
+            saveUser: saveUser,
+            deleteUser: deleteUser
+        }
+    });
+    app.directive('customOnChange', function() {
+        return {
+            restrict: 'A',
+            link: function (scope, element, attrs) {
+                var onChangeHandler = scope.$eval(attrs.customOnChange);
+                element.bind('change', onChangeHandler);
+            }
+        };
+    });
+    app.controller('settingsController', function ($scope, $window, $location, userService) {
+        $scope.user = userService.user;
+        $scope.saveSettings = function () {
+            userService.saveUser();
+        }
+        $scope.deleteUser = function() {
+           if ($window.confirm("Czy chcesz usunąć konto?")) {
+               userService.deleteUser();
+               $window.location.href = "/index.html";  
+           }       
+         }
+        $scope.fileUpload = function(event) {
+            $scope.$apply(function() {
+                userService.user.avatar = event.target.files[0].name;            
+            });
+        }
+    });
     app.controller('mainController', function ($scope,sharedProperties) {
         $scope.Users = [
             {"firstName": "John", "lastName": "Doe", "ranking": 2,"wins": 5,"losts":1,"tie":"2"},
