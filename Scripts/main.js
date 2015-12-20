@@ -155,14 +155,32 @@ $(document).ready(function() {
   });
   app.controller('gameController', function($scope) {
       var socket = io();
+      var resetBoardButton = document.getElementById('resetBoardButton');
+      var savedChessBoard = localStorage.getItem('chess-board');
 
-      var handleMove = function(source, target) {
+      function initiateNewBoard() {
+        board.clear(false);
+        board.start();
+        game = new Chess();
+        localStorage.setItem('chess-board', game.fen());
+      }
+
+      function handleMove(source, target) {
         var move = game.move({
           from: source,
           to: target
         });
-        socket.emit('move', move);
-      };
+
+        if (move) {
+          socket.emit('move', move);
+          localStorage.setItem('chess-board', game.fen());
+          if (game.game_over()) {
+            alert('szach mat katole!');
+          }
+        } else {
+          return 'snapback';
+        }
+      }
 
       var cfg = {
         draggable: true,
@@ -171,11 +189,27 @@ $(document).ready(function() {
       };
 
       board = new ChessBoard('board', cfg);
-      game = new Chess();
+
+      if (savedChessBoard) {
+        board.position(savedChessBoard, false);
+        game = new Chess(savedChessBoard);
+      } else {
+        game = new Chess();
+      }
 
       socket.on('move', function(msg) {
         game.move(msg);
         board.position(game.fen()); // fen is the board layout
+        localStorage.setItem('chess-board', game.fen());
+      });
+
+      socket.on('reset', function() {
+        initiateNewBoard();
+      });
+
+      resetBoardButton.addEventListener('click', function() {
+        initiateNewBoard();
+        socket.emit('reset');
       });
   });
   app.service('sharedProperties', function() {

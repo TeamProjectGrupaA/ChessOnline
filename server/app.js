@@ -9,8 +9,11 @@ io.on('connection', function(socket) {
   console.log('New connection');
 
   socket.on('move', function(msg) {
-    console.log(msg);
     socket.broadcast.emit('move', msg);
+  });
+
+  socket.on('reset', function() {
+    socket.broadcast.emit('reset');
   });
 });
 
