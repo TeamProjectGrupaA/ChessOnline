@@ -1,0 +1,89 @@
+package rests.Models;
+
+import javax.persistence.*;
+
+
+@Entity
+@Table(name = "invites")
+public class Invites {
+	  private int id;
+	    private Long creationTime;
+	    private Long removeTime;
+	    private Boolean playable;
+	    private Games gamesByGameId;
+
+	    @Id
+	    @Column(name = "id", nullable = false, insertable = true, updatable = true)
+	    public int getId() {
+	        return id;
+	    }
+
+	    public void setId(int id) {
+	        this.id = id;
+	    }
+
+	    @Basic
+	    @Column(name = "creationTime", nullable = true, insertable = true, updatable = true)
+	    public Long getCreationTime() {
+	        return creationTime;
+	    }
+
+	    public void setCreationTime(Long creationTime) {
+	        this.creationTime = creationTime;
+	    }
+
+	    @Basic
+	    @Column(name = "removeTime", nullable = true, insertable = true, updatable = true)
+	    public Long getRemoveTime() {
+	        return removeTime;
+	    }
+
+	    public void setRemoveTime(Long removeTime) {
+	        this.removeTime = removeTime;
+	    }
+
+	    @Basic
+	    @Column(name = "playable", nullable = true, insertable = true, updatable = true)
+	    public Boolean getPlayable() {
+	        return playable;
+	    }
+
+	    public void setPlayable(Boolean playable) {
+	        this.playable = playable;
+	    }
+
+	    @Override
+	    public boolean equals(Object o) {
+	        if (this == o) return true;
+	        if (o == null || getClass() != o.getClass()) return false;
+
+	        Invites invites = (Invites) o;
+
+	        if (id != invites.id) return false;
+	        if (creationTime != null ? !creationTime.equals(invites.creationTime) : invites.creationTime != null)
+	            return false;
+	        if (playable != null ? !playable.equals(invites.playable) : invites.playable != null) return false;
+	        if (removeTime != null ? !removeTime.equals(invites.removeTime) : invites.removeTime != null) return false;
+
+	        return true;
+	    }
+
+	    @Override
+	    public int hashCode() {
+	        int result = id;
+	        result = 31 * result + (creationTime != null ? creationTime.hashCode() : 0);
+	        result = 31 * result + (removeTime != null ? removeTime.hashCode() : 0);
+	        result = 31 * result + (playable != null ? playable.hashCode() : 0);
+	        return result;
+	    }
+
+	    @ManyToOne
+	    @JoinColumn(name = "game_id", referencedColumnName = "id")
+	    public Games getGamesByGameId() {
+	        return gamesByGameId;
+	    }
+
+	    public void setGamesByGameId(Games gamesByGameId) {
+	        this.gamesByGameId = gamesByGameId;
+	    }
+	}

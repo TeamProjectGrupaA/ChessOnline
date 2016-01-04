@@ -1,0 +1,85 @@
+package rests.Models;
+
+import javax.persistence.*;
+import java.util.Collection;
+
+
+@Entity
+@Table(name = "games")
+public class Games {
+    private int id;
+    private String fen;
+    private User usersByOponentId;
+    private User usersByUserId;
+    private Collection<Invites> invitesesById;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false, insertable = true, updatable = true)
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Basic
+    @Column(name = "fen", nullable = true, insertable = true, updatable = true, length = 255)
+    public String getFen() {
+        return fen;
+    }
+
+    public void setFen(String fen) {
+        this.fen = fen;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Games games = (Games) o;
+
+        if (id != games.id) return false;
+        if (fen != null ? !fen.equals(games.fen) : games.fen != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (fen != null ? fen.hashCode() : 0);
+        return result;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name = "oponent_id", referencedColumnName = "id")
+    public User getUsersByOponentId() {
+        return usersByOponentId;
+    }
+
+    public void setUsersByOponentId(User usersByOponentId) {
+        this.usersByOponentId = usersByOponentId;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    public User getUsersByUserId() {
+        return usersByUserId;
+    }
+
+    public void setUsersByUserId(User usersByUserId) {
+        this.usersByUserId = usersByUserId;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "gamesByGameId")
+    public Collection<Invites> getInvitesesById() {
+        return invitesesById;
+    }
+
+    public void setInvitesesById(Collection<Invites> invitesesById) {
+        this.invitesesById = invitesesById;
+    }
+}

@@ -20,6 +20,10 @@ $(document).ready(function () {
                 templateUrl: "Scripts/templates/settings.html",
                 controller: "settingsController"
             })
+            .when("/Game",{
+                templateUrl:"Scripts/templates/game.html",
+                controller: "gameController"
+            })
 
     });
     app.factory('userService', function() {
@@ -28,11 +32,11 @@ $(document).ready(function () {
             lastName: "Kot",
             email: "ala@op.pl",
             password: "kot",
-            avatar: "hetman_bialy.png" 
-        }
+            avatar: "hetman_bialy.png"
+        };
         var saveUser = function() {
             console.log(user);
-        }
+        };
         
         var deleteUser = function() {
             user.firstName = "";
@@ -40,7 +44,7 @@ $(document).ready(function () {
             user.email = "";
             user.password = "";
             user.avatar = "";
-        }
+        };
         return {
             user: user,
             saveUser: saveUser,
@@ -60,13 +64,13 @@ $(document).ready(function () {
         $scope.user = userService.user;
         $scope.saveSettings = function () {
             userService.saveUser();
-        }
+        };
         $scope.deleteUser = function() {
            if ($window.confirm("Czy chcesz usunąć konto?")) {
                userService.deleteUser();
                $window.location.href = "/index.html";  
            }       
-         }
+         };
         $scope.fileUpload = function(event) {
             $scope.$apply(function() {
                 userService.user.avatar = event.target.files[0].name;            
@@ -106,7 +110,14 @@ $(document).ready(function () {
         $scope.actualUser = sharedProperties.getActualUser();
         $scope.changeView = function($event,id){
             sharedProperties.changeView($event,id);
+        };
+        $scope.playGame= function(){
+            window.location.replace("#Game");
         }
+
+    });
+
+    app.controller('gameController',function($scope){
 
     });
     app.service('sharedProperties', function () {

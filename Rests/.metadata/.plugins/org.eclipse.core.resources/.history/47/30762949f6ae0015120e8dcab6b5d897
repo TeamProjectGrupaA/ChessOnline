@@ -1,0 +1,43 @@
+package rests.Services;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+import rests.Models.Invites;
+
+public class InvitesServices {
+
+	@PersistenceContext
+    private EntityManager em;
+	
+	@SuppressWarnings("unchecked")
+	public List<Invites> getInvitesByReciverId (int id) {
+		Query query = em.createQuery("SELECT i FROM Invites i WHERE i.reciver_id = :id");
+		query.setParameter("id", id);
+		try{
+			List<Invites> results = query.getResultList();
+			return results;
+		}
+		catch(NoResultException e){
+			e.printStackTrace();
+			return null;
+		}
+	}
+	@SuppressWarnings("unchecked")
+	public List<Invites> getInvitesBySenderId (int id) {
+		Query query = em.createQuery("SELECT i FROM Invites i WHERE i.sender_id = :id");
+		query.setParameter("id", id);
+		try{
+			List<Invites> results = query.getResultList();
+			return results;
+		}
+		catch(NoResultException e){
+			e.printStackTrace();
+			return null;
+		}
+	}
+}

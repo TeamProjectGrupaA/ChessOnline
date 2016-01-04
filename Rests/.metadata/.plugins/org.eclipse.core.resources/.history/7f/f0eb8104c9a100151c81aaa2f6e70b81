@@ -1,0 +1,44 @@
+package rests;
+
+import java.util.List;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+
+@Stateless
+@LocalBean
+
+public class UserServices {
+
+	@PersistenceContext
+    private EntityManager em;
+    
+    public User getUser(int id) {
+        return em.find(User.class, id);
+    }
+    
+    @SuppressWarnings("unchecked")
+	public List<User> getAll(){
+    	
+    	  Query query = em.createQuery("SELECT u FROM User u ORDER BY u.id");
+    	  List<User> results = query.getResultList();
+    	  return results;
+    }
+    
+    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    public void addUser(User user) {
+            em.persist(user);
+    }
+    
+    public User getUserByLogin(String login){
+    	Query query = em.createQuery("SELECT u FROM User WHERE u.login = :login",User.class);
+    	User result = (User) query.getSingleResult();
+    	return result;
+    }
+    
+}

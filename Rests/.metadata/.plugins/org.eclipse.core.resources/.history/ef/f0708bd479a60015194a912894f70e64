@@ -1,0 +1,5 @@
+package rests.Models;
+
+public class Invites {
+
+}
