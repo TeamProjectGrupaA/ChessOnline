@@ -62,6 +62,9 @@ $(document).ready(function() {
       }
     };
   });
+    app.controller('userController',function($scope,userFactory){
+        $scope.actualUser = JSON.parse(localStorage.getItem('user'));
+    });
   app.controller('settingsController', function($scope, $window, $location, userService) {
     $scope.user = userService.user;
     $scope.saveSettings = function() {
@@ -80,58 +83,13 @@ $(document).ready(function() {
     };
   });
   app.controller('mainController', function($scope, sharedProperties) {
-    $scope.Users = [{
-      "firstName": "John",
-      "lastName": "Doe",
-      "ranking": 2,
-      "wins": 5,
-      "losts": 1,
-      "tie": "2"
-    }, {
-      "firstName": "Anna",
-      "lastName": "Smith",
-      "ranking": 1
-    }, {
-      "firstName": "Peter",
-      "lastName": "Jones",
-      "ranking": 4
-    }, {
-      "firstName": "Dawid",
-      "lastName": "Kostrzewski",
-      "ranking": 3
-    }, {
-      "firstName": "John",
-      "lastName": "Doe",
-      "ranking": 5
-    }, {
-      "firstName": "Christina",
-      "lastName": "Smith",
-      "ranking": 7
-    }, {
-      "firstName": "Peter",
-      "lastName": "Jones",
-      "ranking": 8
-    }, {
-      "firstName": "David",
-      "lastName": "Smith",
-      "ranking": 9
-    }, {
-      "firstName": "Hans",
-      "lastName": "Klos",
-      "ranking": 12
-    }, {
-      "firstName": "Anna",
-      "lastName": "Kurnikova",
-      "ranking": 13
-    }, {
-      "firstName": "Peter",
-      "lastName": "Czeresniak",
-      "ranking": 10
-    }, {
-      "firstName": "Pan",
-      "lastName": "Ktos",
-      "ranking": 11
-    }];
+      $scope.init = function(){
+
+      };
+      $scope.actualUser = {};
+      $scope.changeView = function($event, id) {
+          sharedProperties.changeView($event, id);
+      };
     $scope.openUserProfile = function(user) {
       window.location.replace("#Profile/" + user.firstName);
       sharedProperties.setActualUser(user);
@@ -185,7 +143,7 @@ $(document).ready(function() {
       var cfg = {
         draggable: true,
         position: 'start',
-        onDrop: handleMove,
+        onDrop: handleMove
       };
 
       board = new ChessBoard('board', cfg);
