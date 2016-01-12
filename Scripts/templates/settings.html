@@ -9,11 +9,11 @@
                 <li><a href="#Profile"><i class="fa fa-user"></i> Profil</a></li>
                 <li><a href="#Ranking"><i class="fa fa-list"></i> Ranking</a></li>
                 <li><a href="#Game"><i class="fa fa-gamepad"></i> Game</a></li>
-                <li><a href="#Settings"><i class="fa fa-cog"></i> Ustawienia</a></li>
+                <li class="active"><a href="#Settings"><i class="fa fa-cog"></i> Ustawienia</a></li>
             </ul>
         </div>
-        <div style="float: right" class="btn-danger logOutButton"><i class="fa fa-sign-out"></i></div>
-        <div style="float: right" id="whoLogin"><a href="#">{{actualUser.firstname}} {{actualUser.lastlame}}</a></div>
+        <div style="float: right" class="btn-danger logOutButton" ng-click="logout()"><i class="fa fa-sign-out"></i></div>
+        <div style="float: right" id="whoLogin"><a href="#">{{actualUser.firstname}} {{actualUser.lastname}}</a></div>
     </div>
 </nav>
 <div class="col-lg-12">
@@ -25,19 +25,19 @@
 		<form ng-submit="saveSettings()">
 			<div class="form-group">
 				<label for="firstName">Imię</label>
-				<input type="text" ng-model="user.firstName" required class="form-control" id="firstName" placeholder="Imię">
+				<input type="text" ng-model="actualUser.firstname" required class="form-control" id="firstName" placeholder="Imię">
 			</div>
 			<div class="form-group">
 				<label for="lastName">Nazwisko</label>
-				<input type="text" ng-model="user.lastName" required class="form-control" id="lastName" placeholder="Nazwisko">
+				<input type="text" ng-model="actualUser.lastname" required class="form-control" id="lastName" placeholder="Nazwisko">
 			</div>
 			<div class="form-group">
 				<label for="email">Adres e-mail</label>
-				<input type="email" ng-model="user.email" required class="form-control" id="email" placeholder="E-mail">
+				<input type="email" ng-model="actualUser.email" required class="form-control" id="email" placeholder="E-mail">
 			</div>
 			<div class="form-group">
 				<label for="password">Hasło</label>
-				<input type="password" ng-model="user.password" required class="form-control" id="password" placeholder="Hasło">
+				<input type="password" ng-model="actualUser.password" required class="form-control" id="password" placeholder="Hasło">
 			</div>
 			<div class="form-group">
 				<label for="avatar">Nowy obrazek użytkownika</label>

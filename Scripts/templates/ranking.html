@@ -7,12 +7,12 @@
             <ul class="nav navbar-nav">
                 <li><a href="#/main"><i class="fa fa-home"></i> Home</a></li>
                 <li><a href="#Profile"><i class="fa fa-user"></i> Profil</a></li>
-                <li><a href="#Ranking"><i class="fa fa-list"></i> Ranking</a></li>
+                <li class="active"><a href="#Ranking"><i class="fa fa-list"></i> Ranking</a></li>
                 <li><a href="#Game"><i class="fa fa-gamepad"></i> Game</a></li>
                 <li><a href="#Settings"><i class="fa fa-cog"></i> Ustawienia</a></li>
             </ul>
         </div>
-        <div style="float: right" class="btn-danger logOutButton"><i class="fa fa-sign-out"></i></div>
+        <div style="float: right" class="btn-danger logOutButton" ng-click="logout()"><i class="fa fa-sign-out"></i></div>
         <div style="float: right" id="whoLogin"><a href="#">{{actualUser.firstname}} {{actualUser.lastname}}</a></div>
     </div>
 </nav>
@@ -32,7 +32,7 @@
     <div>
         <div class="col-lg-12 personList">
             <ul class="list-group" >
-                <li class="list-group-item personListItem" ng-repeat="user in Users | filter: searchName | orderBy: sorting" ng-click="openUserProfile(user)">{{user.login}} <span class="badge" style="align-items: flex-end">{{user.points}}</span></li>
+                <li class="list-group-item personListItem" ng-repeat="user in Users | filter: searchName | orderBy: sorting" ng-click="openUserProfile(user.id)">{{user.login}} <span class="badge" style="align-items: flex-end">{{user.points}}</span></li>
             </ul>
         </div>
     </div>

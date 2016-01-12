@@ -6,23 +6,23 @@
         <div>
             <ul class="nav navbar-nav">
                 <li><a href="#/main"><i class="fa fa-home"></i> Home</a></li>
-                <li><a href="#Profile"><i class="fa fa-user"></i> Profil</a></li>
+                <li class="active"><a href="#Profile"><i class="fa fa-user"></i> Profil</a></li>
                 <li><a href="#Ranking"><i class="fa fa-list"></i> Ranking</a></li>
                 <li><a href="#Game"><i class="fa fa-gamepad"></i> Game</a></li>
                 <li><a href="#Settings"><i class="fa fa-cog"></i> Ustawienia</a></li>
             </ul>
         </div>
-        <div style="float: right" class="btn-danger logOutButton"><i class="fa fa-sign-out"></i></div>
+        <div style="float: right" class="btn-danger logOutButton" ng-click="logout()"><i class="fa fa-sign-out"></i></div>
         <div style="float: right" id="whoLogin"><a href="#">{{actualUser.firstname}} {{actualUser.lastname}}</a></div>
     </div>
 </nav>
 <div class="col-lg-2">
     <div class="profilFoto"></div>
     <ul class="list-group">
-        <li class="list-group-item">Punkty {{actualUser.points}}</li>
-        <li class="list-group-item">Wygrane {{actualUser.wins}}</li>
-        <li class="list-group-item">Przegrane {{actualUser.losts}}</li>
-        <li class="list-group-item">Remisy {{actualUser.ties}}</li>
+        <li class="list-group-item">Punkty <span class="badge badgeAlign">{{actualUser.points}}</span></li>
+        <li class="list-group-item">Wygrane <span class="badge badgeAlign">{{actualUser.wins}}</span></li>
+        <li class="list-group-item">Przegrane <span class="badge badgeAlign">{{actualUser.losts}}</span></li>
+        <li class="list-group-item">Remisy <span class="badge badgeAlign">{{actualUser.ties}}</span></li>
     </ul>
 </div>
 

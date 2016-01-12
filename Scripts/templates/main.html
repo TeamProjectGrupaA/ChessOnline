@@ -6,14 +6,14 @@
         </div>
         <div>
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#/"><i class="fa fa-home"></i> Home</a></li>
+                <li class="active"><a href="#/main"><i class="fa fa-home"></i> Home</a></li>
                 <li><a href="#Profile"><i class="fa fa-user"></i> Profil</a></li>
                 <li><a href="#Ranking"><i class="fa fa-list"></i> Ranking</a></li>
                 <li><a href="#Game"><i class="fa fa-gamepad"></i> Game</a></li>
                 <li><a href="#Settings"><i class="fa fa-cog"></i> Ustawienia</a></li>
             </ul>
         </div>
-        <div style="float: right" class="btn-danger logOutButton"><i class="fa fa-sign-out"></i></div>
+        <div style="float: right" class="btn-danger logOutButton" ng-click="logout()"><i class="fa fa-sign-out"></i></div>
         <div style="float: right" id="whoLogin"><a href="#">{{actualUser.firstname}} {{actualUser.lastname}}</a></div>
     </div>
 </nav>
@@ -42,11 +42,11 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="game in games">
-                <td>{{game.id}}</td>
-                <td>{{getOpponentLogin(game.oponentId)}}</td>
-                <td>{{game.fen}}</td>
-                <td><div class="btn btn-mini btn-success" style="float: right; width: 95px;">Graj</div></td>
+            <tr ng-repeat="game in games" ng-if="game.finished == false">
+                <td>{{giveDate(game.date)}}</td>
+                <td ng-click="openUserProfile(game)" style="cursor: pointer">{{getOpponentLogin(game)}}</td>
+                <td>{{giveMove(game)}}</td>
+                <td><div class="btn btn-mini btn-primary" style="float: right; width: 95px;" ng-if="giveMove(game) == 'Mój'" ng-click="letsPlay(game)">Graj</div></td>
             </tr>
             </tbody>
         </table>
@@ -74,10 +74,10 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="invite in invites">
+                <tr ng-repeat="invite in invites | orderBy: -invite.creationTime" ng-if="invite.gameId == null">
                     <td>{{giveDate(invite.creationTime)}}</td>
-                    <td>{{getOpponentLogin(invite.reciverId)}}</td>
-                    <td><div class="btn btn-mini btn-success" style="float: right;width: 95px;">Zaakceptuj</div></td>
+                    <td ng-click="openUserProfile(invite.senderId)" style="cursor: pointer">{{inviteSender(invite.senderId)}}</td>
+                    <td><div class="btn btn-mini btn-primary" style="float: right;width: 95px;" ng-click="acceptInvite(invite)">Zaakceptuj</div></td>
                 </tr>
                 </tbody>
             </table>

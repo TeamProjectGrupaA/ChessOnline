@@ -103,6 +103,7 @@ body{
     border-radius: 0px;
 }
 .logOutButton{
+    cursor: pointer;
     border-radius: 4px;
     padding: 0 8px;
     margin-top: 15px;
@@ -124,6 +125,13 @@ body{
 .hideSection{
     float: right;
     cursor: pointer;
+}
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:focus, .navbar-inverse .navbar-nav > .active > a:hover {
+    color: #FFF;
+    background-color: rgba(224, 222, 222, 0.22);
+}
+.badgeAlign{
+    align-items: flex-end;
 }
 @media (min-width: 768px) {
     #LoginBody .registration-form {

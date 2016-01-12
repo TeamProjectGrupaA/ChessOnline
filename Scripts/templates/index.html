@@ -2,7 +2,7 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <img alt="Brand" src="../../img/logoChess1.png" class="navbar-logo">
+            <!--<img alt="Brand" src="../../img/logoChess1.png" class="navbar-logo">-->
         </div>
     </div>
 </nav>
@@ -11,14 +11,14 @@
     <div class="col-sm-4 col-sm-offset-4 col-xs-12">
         <form class="login-form">
             <label for="inputLogin">Login</label>
-            <input type="text" id="inputLogin" class="form-control" placeholder="Login" required="" autofocus="" ng-model="login">
+            <input type="text" id="inputLogin" class="form-control" placeholder="Login" ng-model="login">
             <br />
             <label for="inputPassword">Password</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password">
             <br />
-            <a href="#main/" ng-click="logIn()"><button type="button" class="btn btn-primary btn-block" id="login-submit">Zaloguj</button></a>
+            <a ng-click="logIn()"><button type="button" class="btn btn-primary btn-block" id="login-submit">Zaloguj</button></a>
             <br />
-            <button type="submit" class="btn btn-primary btn-block" id="register-submit">Zarejestruj</button>
+            <button type="submit" class="btn btn-primary btn-block" id="register-submit" ng-click="registryUser()">Zarejestruj</button>
         </form>
 
     </div>

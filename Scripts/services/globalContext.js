@@ -5,8 +5,13 @@ globalContext.context = function(){
     var usersList = [];
     var sendedInvites = [];
     var recivedInvites = [];
-    var mainUrl = "http://localhost:8080/ChessRests";
+    var mainUrl = "http://51.254.200.31:8080/ChessRests";
+    //var mainUrl = "http://localhost:8080/ChessRests";
+    var startFEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
   return{
+      startFEN: function(){
+          return startFEN;
+      },
       mainUrl: function(){
         return mainUrl;
       },

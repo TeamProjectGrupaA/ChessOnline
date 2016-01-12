@@ -1,19 +1,19 @@
 <div class="col-sm-4 col-sm-offset-4 col-xs-12" ng-controller="registryController">
     <form class="login-form">
         <label for="inputLogin">Login</label>
-        <input type="text" id="inputLogin" class="form-control" placeholder="Login"  autofocus="">
+        <input type="text" id="inputLogin" class="form-control" placeholder="Login"  autofocus="" ng-model="login">
         <br />
         <label for="inputPassword">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" >
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" ng-model="pass">
         <br />
         <label for="inputPassword2">Password</label>
         <input type="password" id="inputPassword2" class="form-control" placeholder="Password" >
         <br />
         <label for="firstnameInput">Imie</label>
-        <input type="text" id="firstnameInput" class="form-control" placeholder="Imie" >
+        <input type="text" id="firstnameInput" class="form-control" placeholder="Imie" ng-model="fname">
         <br />
         <label for="lastnameInput">Nazwisko</label>
-        <input type="text" id="lastnameInput" class="form-control" placeholder="Nazwisko" >
+        <input type="text" id="lastnameInput" class="form-control" placeholder="Nazwisko" ng-model="lname">
         <br />
         <div class="btn btn-primary btn-block" id="register-submit" ng-click="registryUser()">Zarejestruj</div>
     </form>

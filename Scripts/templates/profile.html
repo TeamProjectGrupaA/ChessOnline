@@ -5,24 +5,24 @@
         </div>
         <div>
             <ul class="nav navbar-nav">
-                <li><a href="#/"><i class="fa fa-home"></i> Home</a></li>
-                <li><a href="#Profile"><i class="fa fa-user"></i> Profil</a></li>
+                <li><a href="#/main"><i class="fa fa-home"></i> Home</a></li>
+                <li class="active"><a href="#Profile"><i class="fa fa-user"></i> Profil</a></li>
                 <li><a href="#Ranking"><i class="fa fa-list"></i> Ranking</a></li>
                 <li><a href="#Game"><i class="fa fa-gamepad"></i> Game</a></li>
                 <li><a href="#Settings"><i class="fa fa-cog"></i> Ustawienia</a></li>
             </ul>
         </div>
-        <div style="float: right" class="btn-danger logOutButton"><i class="fa fa-sign-out"></i></div>
-        <div style="float: right" id="whoLogin"><a href="#">{{actualUser.firstName}} {{actualUser.lastName}}</a></div>
+        <div style="float: right" class="btn-danger logOutButton" ng-click="logout()"><i class="fa fa-sign-out"></i></div>
+        <div style="float: right" id="whoLogin"><a href="#">{{actualUser.firstname}} {{actualUser.lastname}}</a></div>
     </div>
 </nav>
 <div class="col-lg-2">
     <div class="profilFoto"></div>
     <ul class="list-group">
-        <li class="list-group-item">Ranking: <span class="badge pull-right">{{actualUser.ranking}}</span></li>
-        <li class="list-group-item">Wygrane: <span class="badge pull-right">{{actualUser.wins}}</span></li>
-        <li class="list-group-item">Przegrane: <span class="badge pull-right">{{actualUser.losts}}</span></li>
-        <li class="list-group-item">Remisy: <span class="badge pull-right">{{actualUser.tie}}</span></li>
+        <li class="list-group-item">Punkty: <span class="badge pull-right">{{User.points}}</span></li>
+        <li class="list-group-item">Wygrane: <span class="badge pull-right">{{User.wins}}</span></li>
+        <li class="list-group-item">Przegrane: <span class="badge pull-right">{{User.losts}}</span></li>
+        <li class="list-group-item">Remisy: <span class="badge pull-right">{{User.ties}}</span></li>
     </ul>
 </div>
 <div class="col-lg-10">
@@ -44,11 +44,11 @@
                 <tbody>
                 <tr>
                     <td>Imie:</td>
-                    <td>{{actualUser.firstName}}</td>
+                    <td>{{User.firstname}}</td>
                 </tr>
                 <tr>
                     <td>Nazwisko:</td>
-                    <td>{{actualUser.lastName}}</td>
+                    <td>{{User.lastname}}</td>
                 </tr>
                 </tbody>
             </table>
@@ -68,7 +68,7 @@
             </tbody>
         </table>
         <div id="inviteUser">
-            <div class="btn btn-default" style="width: 10%" ng-click="playGame()"><i class="fa fa-play"></i> Zaproś</div>
+            <div class="btn btn-primary" style="width: 10%" ng-click="sendInvite()"><i class="fa fa-play"></i> Zaproś</div>
         </div>
     </div>
 
