@@ -245,7 +245,6 @@ $(document).ready(function() {
                     $scope.newGame = response.data;
                     invite.gameId = $scope.newGame.id;
                     invite.playable = true;
-                    sessionStorage.setItem('actualGame',JSON.stringify(response.data));
             }, function(response){
                 console.log("NEW GAME CREATE ERROR");
             });
@@ -432,6 +431,7 @@ $(document).ready(function() {
         $scope.logout = function(){
             sharedProperties.logout()
         };
+        $scope.User = {};
         $scope.actualUser = {};
         $scope.actualGame = {};
         $http.get(context.mainUrl() + "/users/" + sessionStorage.getItem('user'))
@@ -445,6 +445,7 @@ $(document).ready(function() {
                 .then(function(response){
                     console.log("GET GAME");
                     $scope.actualGame = response.data;
+                    console.log(response.data);
                 })
         },200);
         var orientation = "";
@@ -458,19 +459,70 @@ $(document).ready(function() {
 
                 if (move) {
                     if (game.game_over()) {
-                        alert('szach mat katole!');
+                        setTimeout(function(){
+                            var id = "";
+                            if ($scope.actualUser.id == $scope.actualGame.userId){
+                                id = $scope.actualGame.opponentId;
+                            }
+                            else if ($scope.actualUser.id == $scope.actualGame.opponentId){
+                                id = $scope.actualGame.userId;
+                            }
+                           $http.get(context.mainUrl() + '/users/' + id).success(function(response){
+                               $scope.User = response.data;
+                               console.log(response.data);
+                           })
+
+                        },200);
+                        if(game.turn() == "b"){
+                            $scope.User.losts = $scope.User.losts + 1;
+                            $scope.actualUser.wins = $scope.actualUser.wins + 1;
+                            $scope.actualUser.points = $scope.actualUser.points + 3;
+                        }
+                        else if(game.turn() == 'w'){
+                            $scope.actualUser.losts = $scope.User.losts + 1;
+                            $scope.User.wins = $scope.User.wins + 1;
+                            $scope.User.points = $scope.User.points + 3;
+                        }
+                        setTimeout(function(){
+                            $http.put(context.mainUrl() + "/users/", $scope.actualUser).then(function(response){
+                                console.log("UPDATE ACTUAL USER");
+                                console.log(response.data);
+                            },function(){
+                                console.log("UPDATE ACTUAL USER FAILED!");
+                            })
+                        },200);
+                        setTimeout(function(){
+                            $http.put(context.mainUrl() + "/users/", $scope.User).then(function(response){
+                                console.log("UPDATE USER");
+                                console.log(response.data);
+                            },function(){
+                                console.log("UPDATE USER FAILED!");
+                            })
+                        },200);
+                        setTimeout(function(){
+                            $scope.actualGame.finished = true;
+                            $http.put(context.mainUrl() + "/games/", $scope.actualGame).then(function(response){
+                                console.log("GAME UPDATED");
+                                console.log(response.data);
+                            },function(){
+                                console.log('ERROR WITH GAME UPDATE');
+                            })
+                        },200);
+                        window.location.replace('#/main');
+                        alert('Szach mat! Koniec Gry!');
                     }
                     else{
-                        $scope.actualGame.fen = game.fen();
-                        $http.put(context.mainUrl() + "/games/",$scope.actualGame)
-                            .then(function(response){
-                                console.log("GAME UPDATE");
-                                console.log($scope.actualGame);
-                                window.location.replace("#/main");
-                                window.location.reload();
-                            }, function(response){
-                                console.log("ERROR WITH GAME UPDATE");
-                            });
+                            $scope.actualGame.fen = game.fen();
+                            $http.put(context.mainUrl() + "/games/",$scope.actualGame)
+                                .then(function(response){
+                                    console.log("GAME UPDATE");
+                                    console.log($scope.actualGame);
+                                    window.location.replace("#/main");
+                                    window.location.reload();
+                                }, function(response){
+                                    console.log("ERROR WITH GAME UPDATE");
+                                });
+
                     }
                 } else {
                     return 'snapback';
@@ -492,6 +544,7 @@ $(document).ready(function() {
             var cfg = {
                 draggable: true,
                 onDrop: handleMove,
+                position: $scope.actualGame.fen,
                 onDragStart: onDragStart,
                 orientation: orientation
             };
